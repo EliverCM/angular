@@ -48,7 +48,7 @@ export class PostService {
         Authorization: `Bearer ${token}`,
       }),
     };
-    return this.http.post(this.apiUrl + 'Vehicle', userData, this.httpOptions);
+    return this.http.post(this.apiUrl + 'Vehicle', userData, httpOptions);
   }
 
   getOwner(): Observable<any> {

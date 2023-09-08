@@ -1,37 +1,42 @@
 <form class="row g-3 mt-4" [formGroup]="OwnerForm" (ngSubmit)="onSubmit()">
+<div *ngIf="errorForm" class="alert alert-danger" role="alert">
+  Por favor complete todos los campos requeridos (*)
+</div>
+  <div *ngIf="boxOK" class="alert alert-success" role="alert">
+  Registro creado
+</div>
   <div class="col-md-6">
-    <label for="name" class="form-label">Primer nombre</label>
+    <label for="name" class="form-label">* Primer nombre</label>
     <input type="text" class="form-control" id="name" formControlName="name" value="" required>
   </div>
   <div class="col-md-6">
     <label for="middleName" class="form-label">Segundo nombre</label>
     <div class="input-group">
-      <input type="text" class="form-control" id="middleName" formControlName="middleName"  aria-describedby="inputGroupPrepend2" required>
+      <input type="text" class="form-control" id="middleName" formControlName="middleName"  aria-describedby="inputGroupPrepend2">
     </div>
   </div>
   <div class="col-md-12">
-    <label for="lastName" class="form-label">Apellidos</label>
+    <label for="lastName" class="form-label">* Apellidos</label>
     <input type="text" class="form-control" id="lastName" formControlName="lastName" required>
   </div>
     <div class="col-md-6">
-    <label for="ccnumber" class="form-label">Cedula Ciudadania</label>
+    <label for="ccnumber" class="form-label">* Cedula Ciudadania</label>
     <input type="number" class="form-control" id="ccnumber" formControlName="ccnumber" value="" required>
   </div>
     <div class="col-md-6">
-     <label for="city" class="form-label">Ciudad</label>
+     <label for="city" class="form-label">* Ciudad</label>
     <select class="form-select" id="city" formControlName="city" required>
-      <option value="" disabled [selected]="true">Seleccione...</option>
       <option *ngFor="let city of cities" [value]="city.id_city">
         {{ city.name }}
       </option>
     </select>
   </div>
   <div class="col-md-6">
-    <label for="address" class="form-label">Direccion</label>
+    <label for="address" class="form-label">* Direccion</label>
     <input type="text" class="form-control" id="address" formControlName="address" value="" required>
   </div>
   <div class="col-md-6">
-    <label for="phoneNumber" class="form-label">Numero telefono</label>
+    <label for="phoneNumber" class="form-label">* Numero telefono</label>
     <input type="number" class="form-control" id="phoneNumber" formControlName="phoneNumber" required>
   </div>
   <div class="col-12">

@@ -9,6 +9,8 @@ import { PostService } from 'src/app/services/post.service';
 })
 export class OwnerComponent implements OnInit {
   OwnerForm: FormGroup;
+  errorForm = false;
+  boxOK = false;
   cities: any;
   constructor(
     private formBuilder: FormBuilder,
@@ -17,7 +19,7 @@ export class OwnerComponent implements OnInit {
     this.OwnerForm = this.formBuilder.group({
       // Define los campos del formulario y sus validaciones si es necesario
       name: ['', Validators.required],
-      middleName: ['', Validators.required],
+      middleName: [''],
       lastName: ['', Validators.required],
       ccnumber: ['', Validators.required],
       city: [null, Validators.required],
@@ -33,25 +35,30 @@ export class OwnerComponent implements OnInit {
         (response: any) => {
           console.log('Usuario creado con éxito', response);
           this.OwnerForm.reset(); // Limpia el formulario después de la creación exitosa
+          this.boxOK = true;
+          const intervalo = setInterval(() => {
+            this.boxOK = false;
+            clearInterval(intervalo);
+          }, 3000);
         },
         (error: any) => {
           // Maneja errores aquí
           console.error('Error al crear usuario', error);
         }
       );
-    }else{
-      alert('error');
+    } else {
+      this.errorForm = true;
     }
   }
 
   ngOnInit(): void {
-      this.userService.getCities().subscribe(
-        (response: any) => {
-          this.cities = response.data;
-        },
-        (error: any) => {
-          console.error('Error al crear usuario', error);
-        }
-      );
+    this.userService.getCities().subscribe(
+      (response: any) => {
+        this.cities = response.data;
+      },
+      (error: any) => {
+        console.error('Error al crear usuario', error);
+      }
+    );
   }
 }

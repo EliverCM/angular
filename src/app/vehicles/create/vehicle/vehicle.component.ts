@@ -9,6 +9,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class VehicleComponent implements OnInit {
   VehicleForm: FormGroup;
+  errorForm = false;
+  boxOK = false;
   owners: any;
   drivers: any;
   brands: any;
@@ -64,12 +66,19 @@ export class VehicleComponent implements OnInit {
           // Maneja la respuesta exitosa aquí
           console.log('Usuario creado con éxito', response);
           this.VehicleForm.reset(); // Limpia el formulario después de la creación exitosa
+          this.boxOK = true;
+          const intervalo = setInterval(() => {
+            this.boxOK = false;
+            clearInterval(intervalo);
+          }, 3000);
         },
         (error: any) => {
           // Maneja errores aquí
           console.error('Error al crear usuario', error);
         }
       );
+    } else {
+      this.errorForm = true;
     }
   }
 }

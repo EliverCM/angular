@@ -10,6 +10,8 @@ import { PostService } from 'src/app/services/post.service';
 export class DriverComponent implements OnInit {
   DriverForm: FormGroup;
   errorForm = false;
+  boxOK = false;
+  cities: any;
   constructor(
     private formBuilder: FormBuilder,
     private userService: PostService
@@ -17,7 +19,7 @@ export class DriverComponent implements OnInit {
     this.DriverForm = this.formBuilder.group({
       // Define los campos del formulario y sus validaciones si es necesario
       name: ['', Validators.required],
-      middleName: ['', Validators.required],
+      middleName: [''],
       lastName: ['', Validators.required],
       ccnumber: ['', Validators.required],
       city: [null, Validators.required],
@@ -34,6 +36,11 @@ export class DriverComponent implements OnInit {
           // Maneja la respuesta exitosa aquí
           console.log('Usuario creado con éxito', response);
           this.DriverForm.reset(); // Limpia el formulario después de la creación exitosa
+          this.boxOK = true;
+          const intervalo = setInterval(() => {
+            this.boxOK = false;
+            clearInterval(intervalo);
+          }, 3000);
         },
         (error: any) => {
           // Maneja errores aquí
@@ -41,10 +48,18 @@ export class DriverComponent implements OnInit {
         }
       );
     } else {
-      alert('error');
       this.errorForm = true;
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userService.getCities().subscribe(
+      (response: any) => {
+        this.cities = response.data;
+      },
+      (error: any) => {
+        console.error('Error al crear usuario', error);
+      }
+    );
+  }
 }
