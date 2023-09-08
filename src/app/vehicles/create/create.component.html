@@ -1,0 +1,35 @@
+<div class="container w-50 mt-5">
+  <div
+    style="display: flex; justify-content: space-between; align-items: center"
+  >
+    <h3 style="margin: 0">Agregar Vehiculo</h3>
+    <a routerLink="/Vehicle" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a>
+  </div>
+  <hr />
+
+    <ul class="nav nav-tabs" id="myTabs" role="tablist">
+    <li style="cursor: pointer;" class="nav-item" role="presentation">
+        <a id="tab1-tab" class="nav-link active" (click)="activateTab(1)" role="tab" aria-controls="tab1" aria-selected="true">Vehiculo</a>
+    </li>
+    <li style="cursor: pointer;" class="nav-item" role="presentation">
+        <a id="tab2-tab" class="nav-link" (click)="activateTab(2)" role="tab" aria-controls="tab2" aria-selected="false">Propietario</a>
+    </li>
+    <li style="cursor: pointer;" class="nav-item" role="presentation">
+        <a id="tab3-tab" class="nav-link" (click)="activateTab(3)" role="tab" aria-controls="tab3" aria-selected="false">Conductor</a>
+    </li>
+    </ul>
+
+    <div class="tab-content" id="myTabsContent">
+    <div *ngIf="tabSelected == 1" class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+        <app-vehicle></app-vehicle>
+    </div>
+    <div *ngIf="tabSelected == 2" class="tab-pane fade show active" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+        <app-owner></app-owner>
+    </div>
+    <div *ngIf="tabSelected == 3" class="tab-pane fade show active" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+        <app-driver></app-driver>
+    </div>
+    </div>
+
+
+</div>

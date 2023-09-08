@@ -1,0 +1,78 @@
+<div class="container w-50 mt-5">
+  <div
+    style="display: flex; justify-content: space-between; align-items: center"
+  >
+    <h3 style="margin: 0">Lista de vehículos</h3>
+    <a (click)="LogIn()" class="btn btn-primary">Agregar registro</a>
+  </div>
+  <hr />
+  <div *ngFor="let vehicle of vehicles" class="card mt-2" style="width: 100%">
+    <div class="card-body">
+      <div class="row align-items-start">
+        <div class="col-4">
+          <h5 class="card-title">Placa y Marca</h5>
+          {{ vehicle.plate }}
+          <br />
+          {{ vehicle.brand_name }}
+        </div>
+        <div class="col-4">
+          <label class="fw-bold">Color:</label>
+          <p>{{ vehicle.color }}</p>
+          <label class="fw-bold">Tipo Vehiculo:</label>
+          <p>{{ vehicle.type_name }}</p>
+        </div>
+        <div class="col-4">
+          <label class="fw-bold">Conductor:</label>
+          <a
+            (click)="getInfo(vehicle.id_driver, 1)"
+            class="btn btn-secondary d-block text-start"
+            data-bs-toggle="modal"
+            data-bs-target="#myModal"
+            >{{ vehicle.driver_first_name }} {{ vehicle.driver_last_name }}</a
+          >
+          <label class="fw-bold">Propietario:</label>
+          <a
+            (click)="getInfo(vehicle.id_owner, 2)"
+            class="btn btn-secondary d-block text-start"
+            data-bs-toggle="modal"
+            data-bs-target="#myModal"
+            >{{ vehicle.owner_first_name }} {{ vehicle.owner_last_name }}</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="myModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>{{ infoModal === 1 ? 'Informacion conductor' : 'Informacion propietario' }}</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!-- Aquí coloca el contenido del modal -->
+
+        <app-card-user [jsonData]="infoModal"></app-card-user>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+        <!-- Puedes agregar más botones según tus necesidades -->
+      </div>
+    </div>
+  </div>
+</div>

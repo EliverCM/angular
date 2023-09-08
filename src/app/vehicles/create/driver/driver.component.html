@@ -1,0 +1,41 @@
+<form class="row g-3 mt-4" [formGroup]="DriverForm" (ngSubmit)="onSubmit()">
+  <div *ngIf="errorForm" class="alert alert-danger" role="alert">
+  Por favor complete todos los campos requeridos (*)
+</div>
+  <div class="col-md-6">
+    <label for="name" class="form-label">* Primer nombre</label>
+    <input type="text" class="form-control" id="name" formControlName="name" value="" required>
+  </div>
+  <div class="col-md-6">
+    <label for="middleName" class="form-label">Segundo nombre</label>
+    <div class="input-group">
+      <input type="text" class="form-control" id="middleName" formControlName="middleName"  aria-describedby="inputGroupPrepend2" required>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <label for="lastName" class="form-label">* Apellidos</label>
+    <input type="text" class="form-control" id="lastName" formControlName="lastName" required>
+  </div>
+    <div class="col-md-6">
+    <label for="ccnumber" class="form-label">* Cedula Ciudadania</label>
+    <input type="number" class="form-control" id="ccnumber" formControlName="ccnumber" value="" required>
+  </div>
+    <div class="col-md-6">
+     <label for="city" class="form-label">* Ciudad</label>
+    <select class="form-select" id="city" formControlName="city" required>
+      <option value="" disabled [selected]="true">Seleccione...</option>
+      <option value="1">Bogota</option>
+    </select>
+  </div>
+  <div class="col-md-6">
+    <label for="address" class="form-label">* Direccion</label>
+    <input type="text" class="form-control" id="address" formControlName="address" value="" required>
+  </div>
+  <div class="col-md-6">
+    <label for="phoneNumber" class="form-label">* Numero telefono</label>
+    <input type="number" class="form-control" id="phoneNumber" formControlName="phoneNumber" required>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary float-end" type="submit">Agregar conductor</button>
+  </div>
+</form>

@@ -1,0 +1,65 @@
+<form class="row g-3 mt-4" [formGroup]="VehicleForm" (ngSubmit)="onSubmit()">
+  <div class="col-md-6">
+    <label for="plate" class="form-label">Placa</label>
+    <input
+      type="text"
+      class="form-control"
+      id="plate"
+      formControlName="plate"
+      value="IUB-895"
+      required
+    />
+  </div>
+  <div class="col-md-6">
+    <label for="brand" class="form-label">Marca</label>
+    <select class="form-select" id="brand" formControlName="brand" required>
+      <option selected disabled value="">Choose...</option>
+       <option *ngFor="let brand of brands" [value]="brand.id_brand">
+        {{ brand.name }}
+      </option>
+    </select>
+  </div>
+  <div class="col-md-6">
+    <label for="type" class="form-label">Tipo</label>
+    <select class="form-select" id="type" formControlName="type" required>
+      <option selected disabled value="">Choose...</option>
+      <option value="1">Particular</option>
+      <option value="2">Publico</option>
+    </select>
+  </div>
+  <div class="col-md-6">
+    <label for="color" class="form-label">Color</label>
+    <select class="form-select" id="color" formControlName="color" required>
+      <option selected disabled value="">Choose...</option>
+      <option>Rojo</option>
+      <option>Azul</option>
+      <option>Amarillo</option>
+      <option>Verde</option>
+      <option>Gris</option>
+    </select>
+  </div>
+  <div class="col-md-6">
+    <label for="driver" class="form-label">Conductor</label>
+    <select class="form-select" id="driver" formControlName="driver" required>
+      <option selected disabled value="">Choose...</option>
+      <option *ngFor="let driver of drivers" [value]="driver.id_driver">
+        {{ driver.first_name + " " + driver.middle_name + " " + driver.last_name }}
+      </option>
+    </select>
+  </div>
+  <div class="col-md-6">
+    <label for="owner" class="form-label">Propietario</label>
+    <select class="form-select" id="owner" formControlName="owner" required>
+      <option selected disabled value="">Choose...</option>
+      <option *ngFor="let owner of owners" [value]="owner.id_owner">
+        {{ owner.first_name + " " + owner.middle_name + " " + owner.last_name }}
+      </option>
+    </select>
+  </div>
+
+  <div class="col-12">
+    <button class="btn btn-primary float-end" type="submit">
+      Agregar vehiculo
+    </button>
+  </div>
+</form>
